@@ -1,24 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useReducer } from "react"; 
+import { Consumer } from "./context"; 
+import { UserContext, initialState, reducer } from './context'
+import NameEdit from "./NameEdit";
 
 function App() {
+  const [data, setData] = useReducer(reducer, initialState)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <UserContext.Provider value={{data:data, setData:setData}}>
+      <div className="App">
+        <NameEdit/>
+      </div>
+
+    </UserContext.Provider>
   );
 }
 
